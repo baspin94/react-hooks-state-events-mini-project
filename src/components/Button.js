@@ -1,6 +1,12 @@
-function Button({name, onButtonClick}) {
+function Button({name, onButtonClick, selectedCategory}) {
+    
     return (
-        <button onClick={onButtonClick} name={name}>{name}</button>
+        <button 
+            onClick={onButtonClick}
+            name={name}
+            className={(name === selectedCategory) ? "selected" : ""}>
+            {name}
+            </button>
     )
 
 }
