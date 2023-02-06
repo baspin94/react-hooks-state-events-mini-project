@@ -1,9 +1,9 @@
 import React from "react";
 import Button from "./Button";
 
-function CategoryFilter({categories}) {
+function CategoryFilter({categories, onButtonClick}) {
   const categoryButtons = categories.map(category => {
-    return <Button key={category} name={category} />
+    return <Button key={category} name={category} onButtonClick={onButtonClick} />
   })
 
 

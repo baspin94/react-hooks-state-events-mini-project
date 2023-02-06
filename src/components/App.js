@@ -20,17 +20,22 @@ function App() {
   })
   
   const [tasks, setTasks] = useState(taskArray);
+  const [selectedCategory, setSelectedCategory] = useState("All")
 
   function handleDelete(event){
     const id = event.target.id;
     const updatedTasks = tasks.filter(task => task.id !== id);
     setTasks(updatedTasks);
-  }
+  };
+
+  function handleClick(event){
+    console.log(event.target.name);
+  };
 
   return (
     <div className="App">
       <h2>My tasks</h2>
-      <CategoryFilter categories={CATEGORIES}/>
+      <CategoryFilter categories={CATEGORIES} selectedCategory={selectedCategory} onButtonClick={handleClick}/>
       <NewTaskForm />
       <TaskList tasks={tasks} onTaskDelete={handleDelete}/>
     </div>
