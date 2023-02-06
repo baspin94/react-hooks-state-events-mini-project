@@ -1,12 +1,10 @@
 import React from "react";
 import Task from "./Task";
-import { v4 as uuid } from "uuid";
 
-function TaskList({ tasks }) {
+function TaskList({ tasks, onTaskDelete }) {
 
   const taskItems = tasks.map(task => {
-    const taskKey = uuid()
-    return <Task key={taskKey} text={task.text} category={task.category}/>
+    return <Task key={task.id} id={task.id} text={task.text} category={task.category} onTaskDelete={onTaskDelete}/>
   })
   
   return (
