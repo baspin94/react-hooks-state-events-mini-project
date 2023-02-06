@@ -1,17 +1,14 @@
-import React, {useState} from "react";
+import React from "react";
 import Button from "./Button";
 
-function CategoryFilter({categories}) {
-  const [selectedCategory, setSelectedCategory] = useState("All")
+function CategoryFilter({categories, onFilterClick, selectedCategory}) {
+  
   
   const categoryButtons = categories.map(category => {
-    return <Button key={category} name={category} onButtonClick={handleClick} selectedCategory={selectedCategory} />
+    return <Button key={category} name={category} onFilterClick={onFilterClick} selectedCategory={selectedCategory} />
   })
 
-  function handleClick(event){
-    const newCategory = event.target.name;
-    setSelectedCategory(newCategory);
-  };
+  
 
   return (
     <div className="categories">

@@ -9,6 +9,7 @@ console.log("Here's the data you're working with");
 console.log({ CATEGORIES, TASKS });
 
 function App() {
+  const [selectedCategory, setSelectedCategory] = useState("All")
   
   const taskArray = TASKS.map(task => {
     const taskWithId = {
@@ -27,14 +28,17 @@ function App() {
     setTasks(updatedTasks);
   };
 
-  
+  function handleClick(event){
+    const newCategory = event.target.name;
+    setSelectedCategory(newCategory);
+  };
 
   return (
     <div className="App">
       <h2>My tasks</h2>
-      <CategoryFilter categories={CATEGORIES}/>
+      <CategoryFilter categories={CATEGORIES} selectedCategory={selectedCategory} onFilterClick={handleClick}/>
       <NewTaskForm />
-      <TaskList tasks={tasks} onTaskDelete={handleDelete}/>
+      <TaskList tasks={tasks} onTaskDelete={handleDelete} selectedCategory={selectedCategory}/>
     </div>
   );
 }

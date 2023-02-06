@@ -1,8 +1,8 @@
-function Button({name, onButtonClick, selectedCategory}) {
+function Button({name, onFilterClick, selectedCategory}) {
     
     return (
         <button 
-            onClick={onButtonClick}
+            onClick={onFilterClick}
             name={name}
             className={(name === selectedCategory) ? "selected" : ""}>
             {name}
