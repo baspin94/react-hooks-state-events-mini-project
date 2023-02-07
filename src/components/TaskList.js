@@ -1,17 +1,9 @@
 import React from "react";
 import Task from "./Task";
 
-function TaskList({ tasks, onTaskDelete, selectedCategory }) {
+function TaskList({ tasks, onTaskDelete }) {
   
-  const filteredTaskItems = tasks.filter(task => {
-    if (selectedCategory === "All") {
-      return true;
-    } else {
-      return task.category === selectedCategory;
-    }
-  })
-
-  const taskItems = filteredTaskItems.map(task => {
+  const taskItems = tasks.map(task => {
     return <Task key={task.id} id={task.id} text={task.text} category={task.category} onTaskDelete={onTaskDelete}/>
   })
   
@@ -20,6 +12,6 @@ function TaskList({ tasks, onTaskDelete, selectedCategory }) {
       {taskItems}
     </div>
   );
-}
+};
 
 export default TaskList;

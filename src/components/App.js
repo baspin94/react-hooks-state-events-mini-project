@@ -33,17 +33,24 @@ function App() {
     setSelectedCategory(newCategory);
   };
 
-  function handleTaskFormSubmit(newItem) {
-    const newTaskArray = [...tasks, newItem]
-    setTasks(newTaskArray);
+  function handleAddTask(newTask) {
+    setTasks([...tasks, newTask]);
   }
+
+  const filteredTaskItems = tasks.filter(task => {
+    if (selectedCategory === "All") {
+      return true;
+    } else {
+      return task.category === selectedCategory;
+    }
+  })
 
   return (
     <div className="App">
       <h2>My tasks</h2>
       <CategoryFilter categories={CATEGORIES} selectedCategory={selectedCategory} onFilterClick={handleClick}/>
-      <NewTaskForm categories={CATEGORIES} onTaskFormSubmit={handleTaskFormSubmit}/>
-      <TaskList tasks={tasks} onTaskDelete={handleDelete} selectedCategory={selectedCategory}/>
+      <NewTaskForm categories={CATEGORIES} onTaskFormSubmit={handleAddTask}/>
+      <TaskList tasks={filteredTaskItems} onTaskDelete={handleDelete} selectedCategory={selectedCategory}/>
     </div>
   );
 }
