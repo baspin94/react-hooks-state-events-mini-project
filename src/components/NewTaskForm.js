@@ -27,13 +27,15 @@ function NewTaskForm({categories, onTaskFormSubmit}) {
       category: newTaskCategory,
     };
     onTaskFormSubmit(newTaskItem);
+    setNewTask("");
+    setNewTaskCategory("Code");
   };
     
   return (
     <form className="new-task-form" onSubmit={handleSubmit}>
       <label>
         Details
-        <input type="text" name="text" value={newTask} onInput={handleInput}/>
+        <input type="text" name="text" value={newTask} onChange={handleInput}/>
       </label>
       <label>
         Category
