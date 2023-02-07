@@ -1,6 +1,7 @@
 import React, {useState} from "react";
+import { v4 as uuid } from "uuid";
 
-function NewTaskForm({categories}) {
+function NewTaskForm({categories, onTaskFormSubmit}) {
   const [newTask, setNewTask] = useState("")
   const [newTaskCategory, setNewTaskCategory] = useState("Code");
 
@@ -12,15 +13,24 @@ function NewTaskForm({categories}) {
 
   function handleChange(event) {
     setNewTaskCategory(event.target.value);
-
-  }
+  };
 
   function handleInput(event) {
     setNewTask(event.target.value);
-  }
+  };
+
+  function handleSubmit(event) {
+    event.preventDefault();
+    const newTaskItem = {
+      id: uuid(),
+      text: newTask,
+      category: newTaskCategory,
+    };
+    onTaskFormSubmit(newTaskItem);
+  };
     
   return (
-    <form className="new-task-form">
+    <form className="new-task-form" onSubmit={handleSubmit}>
       <label>
         Details
         <input type="text" name="text" value={newTask} onInput={handleInput}/>

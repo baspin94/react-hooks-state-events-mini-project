@@ -33,11 +33,16 @@ function App() {
     setSelectedCategory(newCategory);
   };
 
+  function handleTaskFormSubmit(newItem) {
+    const newTaskArray = [...tasks, newItem]
+    setTasks(newTaskArray);
+  }
+
   return (
     <div className="App">
       <h2>My tasks</h2>
       <CategoryFilter categories={CATEGORIES} selectedCategory={selectedCategory} onFilterClick={handleClick}/>
-      <NewTaskForm categories={CATEGORIES}/>
+      <NewTaskForm categories={CATEGORIES} onTaskFormSubmit={handleTaskFormSubmit}/>
       <TaskList tasks={tasks} onTaskDelete={handleDelete} selectedCategory={selectedCategory}/>
     </div>
   );
